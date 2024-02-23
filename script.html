@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <title>Sample</title>
+        <script>
+            function displayName() {
+                console.log ('user pressed the button.....now do something here')
+                var user_name = document.getElementById('username'); //get the value typed by the user
+                var display_user_name = document.getElementById('displayUserName'); //this is the display text
+                display_user_name.textContent = user_name.value; //set user name html to whatever user just typed
+                
+                //now show the hidden div to this user
+                document.getElementById('displayUserNameSection').style.display="block";                
+            }
+
+            function changeColor() {
+                //console.log ('user pressed the button.....now do something here')
+                var containerName = document.getElementById('colorChangerContainer'); //get the container
+                //now xhange the color of the container
+                containerName.style.backgroundColor="yellow";
+            }
+
+            //a sample array of objects
+            var colors = [
+                {
+                    color: "red",
+                    value: "#f00"
+                },
+                {
+                    color: "green",
+                    value: "#0f0"
+                },
+                {
+                    color: "blue",
+                    value: "#00f"
+                },
+                {
+                    color: "cyan",
+                    value: "#0ff"
+                },
+                {
+                    color: "magenta",
+                    value: "#f0f"
+                },
+                {
+                    color: "yellow",
+                    value: "#ff0"
+                },
+                {
+                    color: "black",
+                    value: "#000"
+                }
+            ]
+
+            function loadColors() {
+                //get the select box element
+                var selectBox = document.getElementById('selectElementId');
+
+                //we loop thru all the items in the colors array
+                for (var i = 0; i < colors.length; i++){
+                    let item = colors[i];
+                    var opt = document.createElement('option');
+                    opt.value = item.value;
+                    opt.innerHTML = item.color;
+                    selectBox.appendChild(opt);
+                }
+            }
+
+            function changeColorWithUserSelection() {
+                //get the seelcted color
+                var selectBox = document.getElementById('selectElementId');
+                var selectedColor = selectBox.value;
+
+                //what is the name of this color?
+                var selectedColorName = selectBox.options[selectBox.selectedIndex].text;
+                console.log ('hey, you set the page to color: ' + selectedColorName);
+
+
+                //now use this user selected color to do something
+                var page = document.getElementsByTagName('body')[0]; //get the container
+                //now xhange the color of the container
+                page.style.backgroundColor=selectedColor;
+
+                //also announce this back tom user
+                //alert ('hey, you set the page to color ' )
+
+            }
+
+
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Javascript</h1>
+
+        <div>
+            <p>Hi. What's your name?</p>
+            <input type="text" id="username" name="username" required minlength="4" maxlength="8" size="10" />
+            <input type="button" style="" value="Submit"/ onclick="displayName()">
+
+            <div id="displayUserNameSection" style="display:none;">
+                <p>My name is <span id="displayUserName" style="font-size:2em;text-transform: capitalize;">Anuja</span></p>
+            </div>
+            <hr>
+        </div>
+
+        <div id="colorChangerContainer">
+            <p>Color changer</p>
+            <input type="button" style="" value="Submit"/ onclick="changeColor()">
+                <p>Lorem Ipsum</p>
+            <hr>
+        </div>
+
+
+        <div id="colorChangerContainer">
+            <p>objects and arrays</p>
+            <p>Select a color...</p>
+            <select name="colors" id="selectElementId" onchange="changeColorWithUserSelection()"></select>
+            <hr>
+        </div>
+
+
+    </body>
+
+    <script>
+            //call the function that will load the colors into the colors select box
+            loadColors();            
+    </script>
+
+</html>
