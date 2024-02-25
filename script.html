@@ -85,6 +85,15 @@
 
             }
 
+            function changeTextSizeAndColor() {
+                const dropdown = document.getElementById('text-size-dropdown');
+                const dropdownColor = document.getElementById('text-color-dropdown');
+                const textToChange = document.getElementById('text-to-change');
+                const size = dropdown.value + 'pt';
+                const color = dropdownColor.value;
+                textToChange.style.fontSize = size;
+                textToChange.style.color = color;
+            }
 
         </script>
 
@@ -119,6 +128,24 @@
             <hr>
         </div>
 
+        <div>
+            <p> Select a size..</p>
+            <select id="text-size-dropdown">
+                <option value="12">12pt</option>
+                <option value="14">14pt</option>
+                <option value="18">18pt</option>
+                <option value="24">24pt</option>
+              </select>    
+            
+            <select id="text-color-dropdown">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select> 
+            <p id="text-to-change"> You can change the size of this text</p>
+            <button onclick="changeTextSizeAndColor()">Change Text Size and Colour </button>
+        </div>
 
     </body>
 
