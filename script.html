@@ -95,8 +95,18 @@
                 textToChange.style.color = color;
             }
 
-        </script>
+            function generateRandomNumber(){
+                const randomNumber = Math.floor(Math.random() * 100);
+                document.getElementById("randomNumber").textContent = randomNumber;
+            }
 
+            function getDate(){
+                const d = new Date();
+                document.getElementById("date").innerHTML = d;
+            }
+
+        </script>
+        
     </head>
 
     <body>
@@ -145,13 +155,68 @@
             </select> 
             <p id="text-to-change"> You can change the size of this text</p>
             <button onclick="changeTextSizeAndColor()">Change Text Size and Colour </button>
+            <hr>
         </div>
 
+        <div>
+            <h3> Get a Random Number</h3>
+            <button onclick="generateRandomNumber()"> Click Me</button>
+            <p id="randomNumber"></p>
+            <hr>
+        </div>
+
+            <h3>Date</h3>
+            <button onclick="getDate()"> Get Date and Time</button>
+            <p id="date"></p>
+            <hr>
+
+        <div>
+            <h3> Some mathematics here</h3>
+            <p> Number 1: </p><input type="number" id="num1" placeholder="Enter the first number">
+            <p> Number 2: </p><input type="number" id="num2" placeholder="Enter the second number:">
+            <br><br>
+            <button onclick="add()"> Add </button>
+            <p id="result"></p>
+            <hr>
+        </div>
+
+        <div>
+            <h3> Age</h3>
+            <p> Enter your age: </p> <input type="number" id="age">
+            <button onclick="displayAge()"> Click Me </button>
+            <p id="msg"> </p>
+            <hr>
+        </div>
     </body>
 
     <script>
             //call the function that will load the colors into the colors select box
-            loadColors();            
+            loadColors();   
+            
+        function add(){
+            var num1 = document.getElementById("num1").value;
+            var num2 = document.getElementById("num2").value;
+            var sum = Number(num1) + Number(num2);
+            document.getElementById("result").innerHTML = "Sum of " + num1 + " and " + num2 + " is: " + sum;
+        }
+
+        function displayAge(){
+            var age = document.getElementById("age").value
+            var msg;
+            if (age < 13){
+                msg = "You are a child.";
+            } else if (age < 20){
+                msg = "You are a teenager.";
+            } else if (age < 30){
+                msg = "You are a young adult.";
+            } else if(age < 65){
+                msg = "You are an adult.";
+            } else{
+                msg = "You are old.";
+            }
+
+            document.getElementById("msg").innerHTML = msg;
+        }
     </script>
 
 </html>
