@@ -85,14 +85,19 @@
 
             }
 
-            function changeTextSizeAndColor() {
+            function changeTextSize() {
                 const dropdown = document.getElementById('text-size-dropdown');
-                const dropdownColor = document.getElementById('text-color-dropdown');
                 const textToChange = document.getElementById('text-to-change');
                 const size = dropdown.value + 'pt';
-                const color = dropdownColor.value;
                 textToChange.style.fontSize = size;
-                textToChange.style.color = color;
+            }
+
+            function changeTextColor(){
+                const dropdownColor = document.getElementById('text-color-dropdown');
+                var textt = document.getElementById("textInput").value;
+                const color = dropdownColor.value;
+                displaytext.style.color = color;
+                document.getElementById("displaytext").innerHTML = textt;
             }
 
             function generateRandomNumber(){
@@ -145,16 +150,24 @@
                 <option value="14">14pt</option>
                 <option value="18">18pt</option>
                 <option value="24">24pt</option>
-              </select>    
-            
+              </select>   
+            <p id="text-to-change"> You can change the size of this text</p>
+            <button onclick="changeTextSize()">Change Text Size </button>
+            <hr>
+        </div>
+
+        <div>
+            <p> Type something here: </p><input type="text" id="textInput" >
+            <p> Select a Colour.. </p>
             <select id="text-color-dropdown">
                 <option value="black">Black</option>
                 <option value="red">Red</option>
                 <option value="green">Green</option>
                 <option value="blue">Blue</option>
-            </select> 
-            <p id="text-to-change"> You can change the size of this text</p>
-            <button onclick="changeTextSizeAndColor()">Change Text Size and Colour </button>
+            </select>
+            <br><br>
+            <button onclick="changeTextColor()"> Change Text Colour </button>
+            <p id="displaytext"> </p>
             <hr>
         </div>
 
@@ -171,9 +184,9 @@
             <hr>
 
         <div>
-            <h3> Some mathematics here</h3>
+            <h3> Some mathematics here (Addition)</h3>
             <p> Number 1: </p><input type="number" id="num1" placeholder="Enter the first number">
-            <p> Number 2: </p><input type="number" id="num2" placeholder="Enter the second number:">
+            <p> Number 2: </p><input type="number" id="num2" placeholder="Enter the second number">
             <br><br>
             <button onclick="add()"> Add </button>
             <p id="result"></p>
@@ -187,6 +200,16 @@
             <p id="msg"> </p>
             <hr>
         </div>
+        <div>
+            <h3> Math Again (Multiplication) </h3>
+            <p> Number 1: </p><input type="number" id="number1" placeholder="Enter the first number">
+            <p> Number 2: </p><input type="number" id="number2" placeholder="Enter the second number">
+            <br><br>
+            <button onclick="multiply()"> Click to get the product </button>
+            <p id="product"> </p>
+            <hr>
+        </div>
+
     </body>
 
     <script>
@@ -216,6 +239,13 @@
             }
 
             document.getElementById("msg").innerHTML = msg;
+        }
+
+        function multiply(){
+            var number1 = document.getElementById("number1").value
+            var number2 = document.getElementById("number2").value
+            var product = Number(number1) * Number(number2)
+            document.getElementById("product").innerHTML = "The product of " + number1 + " and " + number2 + " is: " + product
         }
     </script>
 
