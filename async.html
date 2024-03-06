@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <title>Sample</title>
+
+        <style>
+
+            #usersTable {
+                width:100%;
+                border:5px solid #eee;
+            }
+
+            #usersTable td, table th {
+                font-family:helvetica;
+                font-size:1em;
+                border: 1px solid #eee;
+                padding:3px;
+            }
+
+            .header {
+              font-weight:bold;  
+            }
+        </style>
+
+        <script>
+
+
+            //a sample array of objects
+            var colors = [
+                {
+                    color: "red",
+                    value: "#f00"
+                },
+                {
+                    color: "green",
+                    value: "#0f0"
+                },
+                {
+                    color: "blue",
+                    value: "#00f"
+                },
+                {
+                    color: "cyan",
+                    value: "#0ff"
+                },
+                {
+                    color: "magenta",
+                    value: "#f0f"
+                },
+                {
+                    color: "yellow",
+                    value: "#ff0"
+                },
+                {
+                    color: "black",
+                    value: "#000"
+                }
+            ]
+
+            //fetches data from our server
+            async function fetchData() {
+                console.log ('entered fetchdata function');
+                const response = await fetch("/api/getUsers");
+                const users = await response.json(); //the array of users is in this users variable
+                console.log(users);
+                loadUsers (users)
+
+                //now we call some function to consume this array
+            }
+
+            function loadUsers(obj) {
+                console.log ('entered loadUsers with incoming value ' + JSON.stringify(obj) );
+                //get the select box element
+                var tbl = document.getElementById('usersTable');
+                
+                let users = obj.users; //get the array from the incoming object
+
+                //we loop thru all the items in the colors array
+                for (var i = 0; i < users.length; i++){
+                    let user = users[i];
+                    var tblrow = document.createElement('tr');
+  
+                   //column0
+                   var tbltd0 = document.createElement('td');
+                    var slno = document.createTextNode(i+1);
+                    
+
+                    //column1
+                    var tbltd1 = document.createElement('td');
+                    var userName = document.createTextNode(user.name);
+
+                    //column2
+                    var tbltd2 = document.createElement('td');
+                    var userEmail = document.createTextNode(user.email);
+
+                    //column3
+                    var tbltd3 = document.createElement('td');
+                    var userAge = document.createTextNode(user.age);
+
+                    tbltd0.appendChild(slno);
+                    tbltd1.appendChild(userName);
+                    tbltd2.appendChild(userEmail);
+                    tbltd3.appendChild(userAge);
+
+                    tblrow.appendChild(tbltd0);                    
+                    tblrow.appendChild(tbltd1);
+                    tblrow.appendChild(tbltd2);
+                    tblrow.appendChild(tbltd3);
+                    tbl.appendChild(tblrow);
+                }
+            }
+
+
+        </script>
+        
+    </head>
+
+    <body>
+        <h1>Async</h1>
+
+        <div>
+            <select name="colors" id="selectElementId"></select>
+            <hr>
+            <table style="width:100%" id="usersTable">
+                <tr>
+                    <td class="header">
+                        SL
+                    </td>
+                    <td class="header">
+                        Name
+                    </td>
+                    <td class="header">
+                        Email
+                    </td>
+                    <td class="header">
+                        Age
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="width:100%;text-align:center;"">
+            <button onclick="fetchData()">Fetch data </button>
+            <hr>
+        </div>
+
+
+
+    </body>
+
+
+
+</html>

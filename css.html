@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Sample</title>
+        <style>
+            .col {
+                width:45%;float:left;padding:5px;border:2px solid blue;margin-right:5px;
+            }
+
+            .col.right-col {
+                background-color: yellow;;
+            }
+
+            .col.left-col {
+                background-color: teal;;
+            }
+
+            .container2 {
+                width:25%;
+                background:pink;
+                position: fixed;
+                bottom: 0;
+                right:0;
+                border:3px solid black;
+            }
+
+            .fixed-menu {
+                position:absolute;
+                top:5px;
+                right:5px;
+            }
+
+            /* this is an example of a css element which is targeting a HTML element by its ID */
+            #example2 {
+                display:none;
+            }
+
+
+
+        </style>
+
+        <script>
+            //a global variable which tracks whether the fixed div is open or not
+            var isFixedDivVisible = 0;
+
+            function showHideFixedDiv() {
+                var fixedDiv = document.getElementById('example2'); //get the value typed by the user
+                if (isFixedDivVisible == 0) {
+                    fixedDiv.style.display = "block"; //
+                    isFixedDivVisible = 1;
+                } else {
+                    fixedDiv.style.display = "none"; //hide
+                    isFixedDivVisible = 0;
+                }
+            }
+
+
+</script>
+        
+    </head>
+
+    <body>
+        <h1>CSS</h1>
+        <!-- comment 1-->
+
+        <div class="container">
+            <h1>example1: content in 2 columns</h1>
+            <div class="col left-col">
+                Big night for Biden and Trump: President Joe Biden and former President Donald Trump dominated Super Tuesday races across the country, piling on the delegates with notable victories in California and Texas.
+            </div>
+
+            <div class="col right-col">
+                Haley's surprise win: Trump rolled to victory in at least 12 of tonight's Republican races, although his sole GOP rival, Nikki Haley, foiled a possible clean sweep by winning the Vermont primary. In his victory speech, Trump vowed to unify what he said was a "divided country."            
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>example2: display a fixed position div</h1>
+            <button onclick="showHideFixedDiv()"> Compose email </button>
+
+
+
+        <div class="container2" id="example2">
+            <h1>absolute positioning</h1>
+            <h4>This example emulates Gmail's compose panel, which is fixed to RHS bottom and can be minimized by the user etc.</h4>
+            
+            <div class="fixed-menu">
+                <button onClick="showHideFixedDiv()">Minimize</button>
+                
+            </div>
+
+        </div>
+
+
+</html>
