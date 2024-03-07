@@ -26,18 +26,34 @@ app.get('/fetch', (req, res) => {
 })
 
 
+const emails = [
+  {
+    id: 1,
+    subject: "Weekly team meeting",
+    from: "john.doe@example.com",
+    to: ["jane.doe@example.com"],
+    body: "Hi Jane,\n\nJust a quick reminder about this week's team meeting. Here's the agenda:\n\n1. Project updates\n2. Upcoming deadlines\n3. Open discussion\n\nSee you there!\n\nBest,\nJohn"
+  },
+  {
+    id: 2,
+    subject: "Re: Weekly team meeting",
+    from: "jane.doe@example.com",
+    to: ["john.doe@example.com"],
+    body: "Hi John,\n\nThanks for the reminder! I've added the meeting to my calendar.\n\nBest,\nJane"
+  },
+  {
+    id: 3,
+    subject: "New feature proposal",
+    from: "sales@example.com",
+    to: ["support@example.com"],
+    body: "Hi Support,\n\nWe're thinking of adding a new feature to our product and we'd love to get your feedback.\n\n[Insert feature description here] \n\nWhat do you think?\n\nBest,\nSales"
+  }
+];
 
-app.get('/api/getUsers', (req, res) => {
 
-  var users = {"users":[    
-    {"name":"Ram", "email":"ram@gmail.com", "age":23},    
-    {"name":"Shyam", "email":"shyam23@gmail.com", "age":28},  
-    {"name":"John", "email":"john@gmail.com", "age":33},    
-    {"name":"Bob", "email":"bob32@gmail.com", "age":41}   
-  ]}  
-  
+app.get('/api/getEmails', (req, res) => {  
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(users));
+  res.send(JSON.stringify(emails));
 
 })
 

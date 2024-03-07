@@ -19,50 +19,40 @@
             .header {
               font-weight:bold;  
             }
+
+            .container2 {
+                width:25%;
+                background:pink;
+                position: fixed;
+                bottom: 0;
+                right:0;
+                border:3px solid black;
+            }
+
+            .fixed-menu {
+                position:absolute;
+                top:5px;
+                right:5px;
+            }
+
+            /* this is an example of a css element which is targeting a HTML element by its ID */
+            #example2 {
+                display:none;
+            }
+
         </style>
 
         <script>
 
-
-            //a sample array of objects
-            var colors = [
-                {
-                    color: "red",
-                    value: "#f00"
-                },
-                {
-                    color: "green",
-                    value: "#0f0"
-                },
-                {
-                    color: "blue",
-                    value: "#00f"
-                },
-                {
-                    color: "cyan",
-                    value: "#0ff"
-                },
-                {
-                    color: "magenta",
-                    value: "#f0f"
-                },
-                {
-                    color: "yellow",
-                    value: "#ff0"
-                },
-                {
-                    color: "black",
-                    value: "#000"
-                }
-            ]
+            
 
             //fetches data from our server
             async function fetchData() {
                 console.log ('entered fetchdata function');
-                const response = await fetch("/api/getUsers");
-                const users = await response.json(); //the array of users is in this users variable
-                console.log(users);
-                loadUsers (users)
+                const response = await fetch("/api/getEmails");
+                const emails = await response.json(); //the array of users is in this users variable
+                console.log(emails);
+                loadUsers(emails)
 
                 //now we call some function to consume this array
             }
@@ -72,40 +62,58 @@
                 //get the select box element
                 var tbl = document.getElementById('usersTable');
                 
-                let users = obj.users; //get the array from the incoming object
+                let emails = obj; //get the array from the incoming object
 
                 //we loop thru all the items in the colors array
-                for (var i = 0; i < users.length; i++){
-                    let user = users[i];
+                for (var i = 0; i < emails.length; i++){
+                    let email = emails[i];
                     var tblrow = document.createElement('tr');
   
                    //column0
                    var tbltd0 = document.createElement('td');
-                    var slno = document.createTextNode(i+1);
+                   var eid = document.createTextNode(email.id);
                     
 
                     //column1
                     var tbltd1 = document.createElement('td');
-                    var userName = document.createTextNode(user.name);
+                    var subject = document.createTextNode(email.subject);
 
                     //column2
                     var tbltd2 = document.createElement('td');
-                    var userEmail = document.createTextNode(user.email);
+                    var emailFrom = document.createTextNode(email.from);
 
                     //column3
                     var tbltd3 = document.createElement('td');
-                    var userAge = document.createTextNode(user.age);
+                    var emailTo = document.createTextNode(email.to);
 
-                    tbltd0.appendChild(slno);
-                    tbltd1.appendChild(userName);
-                    tbltd2.appendChild(userEmail);
-                    tbltd3.appendChild(userAge);
+                    var tbltd4 = document.createElement('td');
+                    var emailBody = document.createTextNode(email.body);
+
+                    tbltd0.appendChild(eid);
+                    tbltd1.appendChild(subject);
+                    tbltd2.appendChild(emailFrom);
+                    tbltd3.appendChild(emailTo);
+                    tbltd4.appendChild(emailBody);
 
                     tblrow.appendChild(tbltd0);                    
                     tblrow.appendChild(tbltd1);
                     tblrow.appendChild(tbltd2);
                     tblrow.appendChild(tbltd3);
+                    tblrow.appendChild(tbltd4);
                     tbl.appendChild(tblrow);
+                }
+            }
+
+            var isFixedDivVisible = 0;
+
+            function showHideFixedDiv() {
+                var fixedDiv = document.getElementById('example2'); //get the value typed by the user
+                if (isFixedDivVisible == 0) {
+                    fixedDiv.style.display = "block"; //
+                    isFixedDivVisible = 1;
+                } else {
+                    fixedDiv.style.display = "none"; //hide
+                    isFixedDivVisible = 0;
                 }
             }
 
@@ -115,7 +123,10 @@
     </head>
 
     <body>
-        <h1>Async</h1>
+        <h1>Email</h1>
+
+        <div class="container">
+            <button onclick="showHideFixedDiv()"> Compose email </button>
 
         <div>
             <select name="colors" id="selectElementId"></select>
@@ -123,16 +134,19 @@
             <table style="width:100%" id="usersTable">
                 <tr>
                     <td class="header">
-                        SL
+                        id
                     </td>
                     <td class="header">
-                        Name
+                        Subject
                     </td>
                     <td class="header">
-                        Email
+                        From
                     </td>
                     <td class="header">
-                        Age
+                        To
+                    </td>
+                    <td class="header">
+                        Body
                     </td>
                 </tr>
             </table>
@@ -141,6 +155,20 @@
         <div style="width:100%;text-align:center;"">
             <button onclick="fetchData()">Fetch data </button>
             <hr>
+        </div>
+
+        <div class="container2" id="example2">
+            <h3>Compose Mail</h3>
+            To: <textarea id="To" name="emailTo" rows="1" cols="35"></textarea>
+            Subject: <textarea id="subject" name="emailSubject" rows="1" cols="30"></textarea>
+            <p> Body: </p><textarea id="body" name="emailBody" rows="4" cols="41"></textarea>
+            <br><br>
+            <button> Send </button>
+            
+            <div class="fixed-menu">
+                <button onClick="showHideFixedDiv()">Minimize</button>
+                
+            </div>
         </div>
 
 
