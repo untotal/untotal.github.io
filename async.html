@@ -3,6 +3,12 @@
         <title>Sample</title>
 
         <style>
+            .headingEmail{
+                text-align: center;
+                font-weight: 500;
+                color: palevioletred;
+                background-color: black;
+            }
 
             #usersTable {
                 width:100%;
@@ -26,7 +32,7 @@
                 position: fixed;
                 bottom: 0;
                 right:0;
-                border:3px solid black;
+                border:2px solid black;
             }
 
             .fixed-menu {
@@ -43,9 +49,15 @@
         </style>
 
         <script>
-
+            function changeColorDark() {
+                document.body.style.backgroundColor = "grey";
+                document.getElementById('example2').style.backgroundColor = "#AA336A";
+            }
+            function changeColorLight() {
+                document.body.style.backgroundColor = "white";
+                document.getElementById('example2').style.backgroundColor = "pink";
+            }
             
-
             //fetches data from our server
             async function fetchData() {
                 console.log ('entered fetchdata function');
@@ -123,8 +135,9 @@
     </head>
 
     <body>
-        <h1>Email</h1>
-
+        <h1 class="headingEmail">Email  &#128231</h1>
+        <input type="button" style="float: right;" value="&#9790;"/ onclick="changeColorDark()">
+        <input type="button" style="float: right;" value="&#9728;"/ onclick="changeColorLight()">
         <div class="container">
             <button onclick="showHideFixedDiv()"> Compose email </button>
 
@@ -160,6 +173,7 @@
         <div class="container2" id="example2">
             <h3>Compose Mail</h3>
             To: <textarea id="To" name="emailTo" rows="1" cols="35"></textarea>
+            CC: <textarea id="cc" name="emailcc" rows="1" cols="35"></textarea>
             Subject: <textarea id="subject" name="emailSubject" rows="1" cols="30"></textarea>
             <p> Body: </p><textarea id="body" name="emailBody" rows="4" cols="41"></textarea>
             <br><br>
