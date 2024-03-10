@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const fs = require('fs');
 
 const path = require('path');
 
@@ -25,7 +26,7 @@ app.get('/fetch', (req, res) => {
   //res.send('Hello World!')
 })
 
-
+/*
 const emails = [
   {
     id: 1,
@@ -49,15 +50,28 @@ const emails = [
     body: "Hi Support,\n\nWe're thinking of adding a new feature to our product and we'd love to get your feedback.\n\n[Insert feature description here] \n\nWhat do you think?\n\nBest,\nSales"
   }
 ];
+*/
 
+const emailsPath = path.join(__dirname, 'emails.json');
 
-app.get('/api/getEmails', (req, res) => {  
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(emails));
+fs.readFile(emailsPath, (err, data) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  const emails = JSON.parse(data);
 
-})
+  app.get('/api/getEmails', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(emails));
+  });
+});
 
+//app.get('/api/getEmails', (req, res) => {  
+  //res.setHeader('Content-Type', 'application/json');
+  //res.send(JSON.stringify(emails));
 
+//})
 
 
 

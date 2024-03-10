@@ -83,29 +83,29 @@
   
                    //column0
                    var tbltd0 = document.createElement('td');
-                   var eid = document.createTextNode(email.id);
+                   var eSrNo = document.createTextNode(email.srNo);
                     
 
                     //column1
                     var tbltd1 = document.createElement('td');
-                    var subject = document.createTextNode(email.subject);
+                    var eTo = document.createTextNode(email.to);
 
                     //column2
                     var tbltd2 = document.createElement('td');
-                    var emailFrom = document.createTextNode(email.from);
+                    var eSubject = document.createTextNode(email.subject);
 
                     //column3
                     var tbltd3 = document.createElement('td');
-                    var emailTo = document.createTextNode(email.to);
+                    var eBody = document.createTextNode(email.body);
 
                     var tbltd4 = document.createElement('td');
-                    var emailBody = document.createTextNode(email.body);
+                    var emailDate = document.createTextNode(email.date);
 
-                    tbltd0.appendChild(eid);
-                    tbltd1.appendChild(subject);
-                    tbltd2.appendChild(emailFrom);
-                    tbltd3.appendChild(emailTo);
-                    tbltd4.appendChild(emailBody);
+                    tbltd0.appendChild(eSrNo);
+                    tbltd1.appendChild(eTo);
+                    tbltd2.appendChild(eSubject);
+                    tbltd3.appendChild(eBody);
+                    tbltd4.appendChild(emailDate);
 
                     tblrow.appendChild(tbltd0);                    
                     tblrow.appendChild(tbltd1);
@@ -147,19 +147,19 @@
             <table style="width:100%" id="usersTable">
                 <tr>
                     <td class="header">
-                        id
-                    </td>
-                    <td class="header">
-                        Subject
+                        SrNo
                     </td>
                     <td class="header">
                         From
                     </td>
                     <td class="header">
-                        To
+                        Subject
                     </td>
                     <td class="header">
                         Body
+                    </td>
+                    <td class="header">
+                        Date
                     </td>
                 </tr>
             </table>
