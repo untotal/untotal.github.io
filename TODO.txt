@@ -1,0 +1,13 @@
+
+
+Investigate,
+Form GET and Form POST
+
+Create a new page with 2 types of forms
+let these 2 forms post to 2 different express routes
+
+read the params passed inside GET and POST on the server
+
+
+====
+

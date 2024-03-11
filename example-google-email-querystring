@@ -1,0 +1,18 @@
+server: https://accounts.google.com
+
+
+serverroute: /InteractiveLogin/signinchooser
+
+
+?
+continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1
+&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F
+&osid=1
+&passive=1209600
+&service=mail
+&ifkv=ATuJsjzzIXoAkzzd66usr_X9k9zXQ1HWwiqtN1UcvybNxiAOe6VXCcqmOi65gL2V3ldq62wxxTFJ
+&theme=mn
+&flowName=GlifWebSignIn
+&flowEntry=ServiceLogin
+
+
