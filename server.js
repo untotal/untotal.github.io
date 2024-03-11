@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
     //res.send('Hello World!')
 })
 
+app.get('/resume', (req, res) => {
+  res.send('resume')
+})
+
 app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/script.html'));
     //res.send('Hello World!')
@@ -52,32 +56,51 @@ const emails = [
 ];
 */
 
-const emailsPath = path.join(__dirname, 'emails.json');
 
-fs.readFile(emailsPath, (err, data) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-  }
-  const emails = JSON.parse(data);
+//this is an example of an entire data set delivered to the user
+//e.g. the entire emails.json
+app.get('/api/getEmails', (req, res) => {
 
-  app.get('/api/getEmails', (req, res) => {
+  const emailsPath = path.join(__dirname, 'emails.json');
+
+  fs.readFile(emailsPath, (err, data) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    const emails = JSON.parse(data);
+  
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(emails));
   });
 });
 
-//app.get('/api/getEmails', (req, res) => {  
-  //res.setHeader('Content-Type', 'application/json');
-  //res.send(JSON.stringify(emails));
 
-//})
+//this is an example of an entire data set delivered to the user
+//e.g. the entire emails.json
+app.get('/api/email/fetch/:uname', (req, res) => {
+
+  var userName = req.params.uname;
+
+  const emailsPath = path.join(__dirname, 'emails.json');
+
+  fs.readFile(emailsPath, (err, data) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    const emails = JSON.parse(data);
+
+    var filtered = emails.filter(e => e.to == userName);
+  
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(filtered));
+  });
+});
 
 
 
-app.get('/resume', (req, res) => {
-    res.send('resume')
-  })
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -61,7 +61,7 @@
             //fetches data from our server
             async function fetchData() {
                 console.log ('entered fetchdata function');
-                const response = await fetch("/api/getEmails");
+                const response = await fetch("/api/email/fetch/" + 'user0@example.com');
                 const emails = await response.json(); //the array of users is in this users variable
                 console.log(emails);
                 loadUsers(emails)
@@ -83,7 +83,7 @@
   
                    //column0
                    var tbltd0 = document.createElement('td');
-                   var eSrNo = document.createTextNode(email.srNo);
+                   var eSrNo = document.createTextNode (i+1); //(email.srNo);
                     
 
                     //column1
@@ -136,6 +136,7 @@
 
     <body>
         <h1 class="headingEmail">Email  &#128231</h1>
+        <h4>Logged-in user : <i>user0@example.com</i></h4>
         <input type="button" style="float: right;" value="&#9790;"/ onclick="changeColorDark()">
         <input type="button" style="float: right;" value="&#9728;"/ onclick="changeColorLight()">
         <div class="container">
