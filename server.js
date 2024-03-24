@@ -15,6 +15,22 @@ app.get('/resume', (req, res) => {
   res.send('resume')
 })
 
+
+//an example to print the server request object
+app.get('/request', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send('hello');
+  res.send(JSON.stringify(req));
+})
+
+//an example to print the server response object
+app.get('/response', (req, res) => {
+  console.log (req);
+  //res.setHeader('Content-Type', 'application/json');
+  res.send('hello');
+})
+
+
 app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/script.html'));
     //res.send('Hello World!')
@@ -55,6 +71,39 @@ const emails = [
   }
 ];
 */
+
+
+
+//an example to demonstrate querystrings
+//and how they are used to establish parameterized communication between client & server
+app.get('/testq', (req, res) => {
+  console.log (JSON.stringify(req.query));
+
+  //check if the variable user is there in the querystring
+  if (req.query.user) {
+    res.send('user param exists in the url'); 
+  }
+  else {
+    res.send('user param does NOT exist in the url'); 
+  }
+})
+
+
+//self investigate .... form POST
+app.post('/testq', (req, res) => {
+  console.log (JSON.stringify(req.query));
+  
+  //check if the variable user is there in the querystring
+  if (req.query.user) {
+    res.send('user param exists in the url'); 
+  }
+  else {
+    res.send('user param does NOT exist in the url'); 
+  }
+})
+
+
+
 
 
 //this is an example of an entire data set delivered to the user
