@@ -11,6 +11,14 @@ app.get('/', (req, res) => {
     //res.send('Hello World!')
 })
 
+app.get('/get', (req, res) => {
+  res.sendFile(path.join(__dirname, '/get.html'));
+})
+
+app.get('/post', (req, res) => {
+  res.sendFile(path.join(__dirname, '/post.html'));
+})
+
 app.get('/resume', (req, res) => {
   res.send('resume')
 })

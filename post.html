@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title> This is a POST form </title>
+    </head>
+
+    <body>
+        <h2> Please fill in the following details</h2>
+        <!--form action="/action_page.php" id="users" action="#" method="POST" target="_blank" */-->
+        <div style="border: 1px solid black; text-align: center; background-color: plum; width:400px; margin:0 auto;">
+            <br>
+            <form action="#" method="POST" onsubmit="printData(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email ID:</label>
+                <input type="text" id="email" name="email" required><br><br>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" maxlength="10" required><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+          <br><br><br>
+            
+    </body>
+    <script>
+        function printData(event) {
+            // Prevent the form from submitting normally
+            event.preventDefault();
+    
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            console.log(`Name: ${name}`);
+            console.log(`Email: ${email}`);
+            console.log(`Phone: ${phone}`);
+        }
+    </script>
+</html>
