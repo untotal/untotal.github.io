@@ -4,6 +4,8 @@ const port = 3000
 const fs = require('fs');
 
 const path = require('path');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
@@ -11,13 +13,64 @@ app.get('/', (req, res) => {
     //res.send('Hello World!')
 })
 
-app.get('/get', (req, res) => {
+app.get('/getExample', (req, res) => {
   res.sendFile(path.join(__dirname, '/get.html'));
 })
 
-app.get('/post', (req, res) => {
-  res.sendFile(path.join(__dirname, '/post.html'));
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, '/user-registration.html'));
 })
+
+app.post('/register/post', (req, res) => {
+  console.log ('form post has arrived');
+  console.log('POST parameter received are: ',req.body) 
+  let userName = req.body.username;
+  let phone = req.body.phone;
+  let email = req.body.email;
+
+  //we open the local file where we will hold the names of the users for now
+  //this part will get replaced with some database at a later stage
+  fs.readFile(path.join(__dirname, '/users.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(data);
+
+    let users = JSON.parse (data).users;
+    //constraint:
+    //a user cannot have a phone number & an email address similar to an existing user
+    //check first before adding this user to the database
+    var existsEmail = users.filter(u => u.email == email);
+    var existsPhone = users.filter(u => u.phone == phone);
+
+    let errorMessage = "";
+      
+    if (existsEmail || existsPhone) {
+      errorMessage = {error: "This user already exists!"}
+      res.setHeader('Content-Type', 'application/json');
+      res.send (JSON.stringify(errorMessage));
+    } else {
+      users.push ({name:userName, email:email, phone:phone})
+      //call function to save this users file
+      saveUsersDatabase (users);
+    }
+
+
+  });
+})
+
+
+//this function becomes a general function for any route to save thse users file
+//the input to this function is the array of updated users
+function saveUsersDatabase (users) {
+  fs.writeFile (path.join(__dirname, '/users.json'), JSON.stringify({users:users}), function(err) {
+    if (err) throw err;
+    console.log('completed writing to file');
+    }
+  );
+
+}
 
 app.get('/resume', (req, res) => {
   res.send('resume')

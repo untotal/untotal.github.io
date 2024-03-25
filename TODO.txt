@@ -10,4 +10,52 @@ read the params passed inside GET and POST on the server
 
 
 ====
+Form input elements types
+-- create a new page
+-- add different types of form elements and test them
+https://www.w3schools.com/tags/tag_input.asp
 
+
+====
+Javscript EVENTS
+-- create a new page called events.html & a route in express
+-- add a form in this page
+-- create a few functions
+-- check different events that are exposed by input controls, and bind them to these functions
+-- write the user input to the console
+
+e.g. <input type="text" name="xxx" onChange on
+
+https://www.w3schools.com/tags/ref_eventattributes.asp
+========
+
+
+====
+Form validation on client-side
+in user-registration.html
+-- use javascript to validate the user form inputs before letting the form posted to server
+-- find and use standard email and phone number ***validation***
+-- unless the required fields are filled up properly, keep the submit button disabled
+-- check passwords match
+=====
+
+
+User registration
+-- is basic done
+-- add a password (with confirm password)
+-- save all 4 parameters
+
+
+User Login
+-- create a route for /login....expose a login.html page ()
+-- ask for username, password
+-- keep javascript validation for cases like blanks etc
+-- once validated, POST to a route called "/login/post"
+-- open the DB users.json
+-- check if this user exists
+-- if yes, check that the password is correct
+-- send success/error to the client
+
+
+Home page
+-- create a home page with links to the different sample apps (pages)

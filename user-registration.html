@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title> This is a POST form </title>
+    </head>
+
+    <body>
+        <h2> Please register here</h2>
+        <!--form action="/action_page.php" id="users" action="#" method="POST" target="_blank" */-->
+        <div style="border: 0px solid black; text-align: center; width:400px; margin:0 auto;">
+            <!-- <form action="#" method="POST" onsubmit="printData(event)"> -->
+            <form action="/register/post" method="POST" style="padding:15px">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="username">Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="username" name="username" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="email">Email ID:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="email" name="email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="phone">Phone Number:</label>
+                        </td>
+                        <td>
+                            <input type="tel" id="phone" name="phone" maxlength="10" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="submit" value="Submit" id="btnSubmit">
+                        </td>
+                    </tr>
+                </table>
+                
+                
+            </form>
+        </div>
+           
+    <script>
+        //just showing which events to tie to the form button state
+        function sampleOnly (e) {
+            //console.log (e);
+        }
+    </script>         
+
+
+
+    </body>
+<!--     <script>
+        function printData(event) {
+            // Prevent the form from submitting normally
+            event.preventDefault();
+    
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            console.log(`Name: ${name}`);
+            console.log(`Email: ${email}`);
+            console.log(`Phone: ${phone}`);
+        }
+    </script>
+ -->
+ </html>
